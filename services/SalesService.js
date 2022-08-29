@@ -6,11 +6,10 @@ module.exports = class SalesService {
             const new_sales_record = {
                 name: creationData.name,
                 quantity: creationData.quantity,
-                amount: creationData.amount,
-                date: creationData.date
+                amount: creationData.amount
             }
 
-            const response = await new SalesModel(creationData).save();
+            const response = await new SalesModel(new_sales_record).save();
             return response;
         }
         catch (err) {
