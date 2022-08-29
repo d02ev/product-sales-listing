@@ -17,6 +17,16 @@ module.exports = class SalesService {
         }
     }
 
+    static async getAllSalesRecords() {
+        try {
+            const all_records = await SalesModel.find();
+            return all_records;
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
     static async getSalesRecordByProductName(productName) {
         try {
             const record_by_prod_name = await SalesModel.findOne({ name: productName });
