@@ -5,5 +5,7 @@ const SalesController = require('../controllers/sales.controllers');
 Route.post('/add', SalesController.APICreateSalesRecord);
 // top 5 selling products
 Route.get('/top', SalesController.APIGetTopSellingProducts);
+// today's total revenue generated
+Route.get('/revenue', SalesController.APIGetTotalRevenueOfToday);
 
 module.exports = Route;
