@@ -27,11 +27,31 @@ module.exports = class Sales {
 
     static async APIGetTopSellingProducts(req, res, next) {
         try {
-            const all_prod_records = await SalesService.getAllSalesRecords();
-            
-            all_prod_records.sort(Comparator);
+            const top_prod_records = await SalesService.getTopSalesRecords();
+            res.status(200).json(top_prod_records);
+        }
+        catch (err) {
+            res.status(500).json({
+                error: err
+            })
+        }
+    }
 
-            res.status(200).json(all_prod_records.slice(-5));
+    static async APIGetTotalRevenueOfToday(req, res, next) {
+        try {
+            const records_by_date = await SalesService.getSalesRecordsOfToday();
+
+            console.log(records_by_date.length);
+
+            let total_revenue_generated_today = 0;
+
+            records_by_date.forEach(record => {
+                total_revenue_generated_today += (record.quantity * record.amount);
+            });
+
+            res.status(200).json({
+                total_revenue_generated: total_revenue_generated_today
+            });
         }
         catch (err) {
             res.status(500).json({
