@@ -1,5 +1,4 @@
 const SalesService = require('../services/SalesService');
-const Comparator = require('../helpers/compare.helpers');
 
 module.exports = class Sales {
     static async APICreateSalesRecord(req, res, next) {
@@ -40,8 +39,6 @@ module.exports = class Sales {
     static async APIGetTotalRevenueOfToday(req, res, next) {
         try {
             const records_by_date = await SalesService.getSalesRecordsOfToday();
-
-            console.log(records_by_date.length);
 
             let total_revenue_generated_today = 0;
 
