@@ -4,7 +4,8 @@
   "description": "a basic web app for listing product sales",
   "main": "App.js",
   "scripts": {
-    "start": "node App.js",
+    "clientStart": "cd frontend && npm start",
+    "start": "concurrently \"npm run devStart\" \"npm run clientStart\"",
     "devStart": "nodemon App.js"
   },
   "repository": {
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/d02ev/product-sales-listing#readme",
   "dependencies": {
+    "concurrently": "^7.3.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
