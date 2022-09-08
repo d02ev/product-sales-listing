@@ -13,7 +13,7 @@ module.exports = class SalesService {
             return response;
         }
         catch (err) {
-            console.error(err);
+            console.error('Error: ' + err.message);
         }
     }
 
@@ -33,7 +33,7 @@ module.exports = class SalesService {
             return record_by_prod_name;
         }
         catch (err) {
-            console.error(err);
+            console.error('Error: ' + err.message);
         }
     }
 
@@ -48,13 +48,13 @@ module.exports = class SalesService {
             );
 
             const records_by_date = await SalesModel.find({
-                createdAt: { $gt: new Date(now.getTime() - then.getTime()) }
-            }).sort({ createdAt: -1 });
+                createdAt: { $gte: then, $lte: now }
+            });
             
             return records_by_date;
         }
         catch (err) {
-            console.error(err);
+            console.error('Error: ' + err.message);
         }
     }
 }
