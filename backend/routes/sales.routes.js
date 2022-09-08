@@ -1,11 +1,11 @@
-const Route = require('express').Router();
+const Router = require('express').Router();
 const SalesController = require('../controllers/sales.controllers');
 
 // add a sales record in the db
-Route.post('/add', SalesController.APICreateSalesRecord);
+Router.route('/add').post(SalesController.APICreateSalesRecord);
 // top 5 selling products
-Route.get('/top', SalesController.APIGetTopSellingProducts);
+Router.route('/top').get(SalesController.APIGetTop5SellingProducts);
 // today's total revenue generated
-Route.get('/revenue', SalesController.APIGetTotalRevenueOfToday);
+Router.route('/revenue').get(SalesController.APIGetRecentTotalRevenueGenerated);
 
-module.exports = Route;
+module.exports = Router;
