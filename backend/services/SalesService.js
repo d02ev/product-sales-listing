@@ -39,8 +39,16 @@ module.exports = class SalesService {
 
     static async getSalesRecordsOfToday() {
         try {
+            let now = new Date();
+            let then = new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                now.getDate(),
+                0, 0, 0
+            );
+
             const records_by_date = await SalesModel.find({
-                createdAt: { $gt: new Date(Date.now() - 86400000) }
+                createdAt: { $gt: new Date(now.getTime() - then.getTime()) }
             }).sort({ createdAt: -1 });
             
             return records_by_date;
