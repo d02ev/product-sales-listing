@@ -40,10 +40,11 @@ module.exports = class SalesController {
             const records_created_today = await SalesService.getSalesRecordsOfToday();
 
             records_created_today.forEach(record => {
-                revenue_generated += (record.quantity * record.price);
+                revenue_generated += (record.quantity * record.amount);
             });
 
             res.status(200).json({
+                'date_today': new Date(Date.now()).toDateString(),
                 'revenue_generated_today': Number(revenue_generated)
             });
         }
