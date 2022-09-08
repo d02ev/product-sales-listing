@@ -4,7 +4,7 @@
   "description": "a basic web app for listing product sales",
   "main": "server.js",
   "scripts": {
-    "clientStart": "cd frontend && npm start",
+    "clientStart": "cd ../frontend && npm start",
     "start": "concurrently \"npm run devStart\" \"npm run clientStart\"",
     "devStart": "nodemon ."
   },
