@@ -1,26 +1,21 @@
-import './App.css';
-import { AddSalesRecord } from './components/AddSalesRecord';
-import { DisplayTopSales } from './components/DisplayTopSales';
-import { DisplayRecentRevenue } from './components/DisplayRecentRevenue';
+import { React } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Home } from './components/Home';
+import { AddSales } from './components/AddSales';
+import { TopSales } from './components/TopSales';
+import { SalesRevenue } from './components/SalesRevenue';
+import { NavBar } from './components/NavBar';
 
 function App() {
   return (
     <div className="App">
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            < AddSalesRecord />
-          </div>
-          <div className="col">
-            < DisplayTopSales />
-          </div>
-          <div className="col">
-            < DisplayRecentRevenue />
-          </div>
-        </div>
-      </div>
-
-      
+      <NavBar />
+      <Routes>
+        <Route path="/" element={ <Home/> } />
+        <Route path="/addSales" element={ <AddSales/> } />
+        <Route path="topSales" element={ <TopSales/> } />
+        <Route path="/salesRevenue" element={ <SalesRevenue/> } />
+      </Routes>
     </div>
   );
 }
