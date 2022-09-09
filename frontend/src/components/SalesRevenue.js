@@ -1,10 +1,10 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 
-export const DisplayRecentRevenue = () => {
+export const SalesRevenue = () => {
     const [initialState, setInitialState] = useState([]);
     const url = "http://localhost:3001/api/v1/sales/revenue"
 
-    const fetchData = () => {
+    useEffect(() => {
         fetch(url)
             .then(res => {
                 return res.json();
@@ -15,14 +15,14 @@ export const DisplayRecentRevenue = () => {
             .catch(err => {
                 console.error(err);
             })
-    };
+    }, [])
 
     return (
-        <div>
-            <button onClick={fetchData} className="btn btn-primary">Recent Revenue</button>
+        <div className="container">
             {initialState.length > 0 && initialState.map((item, i) => (
                 <div key={i}>
-                    <p>{item.total_revenue_generated}</p>
+                    <label htmlFor="revenue">Total Revenue Generated: </label>
+                    <input id="revenue" type="number" value={ item.revenue_generated_today } readonly/>
                 </div>
             ))}
         </div>
